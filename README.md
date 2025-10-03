@@ -10,7 +10,7 @@ pnpm install
 ```
 
 ### 2. Set Up Environment Variables
-Create a `.env.local` file in the root directory with your Whop credentials:
+Create a `.env.local` or `.env.development` file in the root directory with your credentials:
 
 ```env
 # Required: Get these from your Whop dashboard
@@ -20,7 +20,14 @@ WHOP_API_KEY=your_api_key_here
 # Optional: For advanced features
 NEXT_PUBLIC_WHOP_AGENT_USER_ID=your_agent_user_id_here
 NEXT_PUBLIC_WHOP_COMPANY_ID=your_company_id_here
+
+# Supabase Configuration (Required for data persistence)
+# Get these from your Supabase project settings
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your_supabase_service_role_key
 ```
+
+> 💡 See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed Supabase configuration instructions.
 
 ### 3. Create Your Whop App
 1. Go to your [Whop Developer Dashboard](https://whop.com/dashboard/developer/)
@@ -44,6 +51,16 @@ The app will be available at `http://localhost:3000`
 3. Add your app
 4. Test the integration
 
+### 6. Test Supabase Connection (Optional)
+After setting up Supabase (see [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)):
+```bash
+# Visit the test endpoint
+curl http://localhost:3000/api/test-supabase \
+  -H "Authorization: Bearer YOUR_WHOP_TOKEN"
+```
+
+Or open in your browser while authenticated to a Whop experience.
+
 ## 🚀 Deploying
 
 ### Deploy to Vercel (Recommended)
@@ -62,12 +79,18 @@ After deployment, update your Whop app settings:
 ```
 ├── app/                    # Next.js app directory
 │   ├── api/               # API routes
+│   │   ├── test-supabase/ # Supabase connection test
+│   │   └── webhooks/      # Webhook handlers
 │   ├── dashboard/         # Dashboard pages
 │   ├── discover/          # Discover page
 │   └── experiences/       # Experience pages
 ├── lib/                   # Utilities and SDK setup
+│   ├── supabase.ts        # Supabase client configuration
 │   └── whop-sdk.ts        # Whop SDK configuration
-└── .env.local            # Environment variables (create this)
+├── models/                # TypeScript interfaces
+│   └── members.ts         # Member data model
+├── .env.local            # Environment variables (create this)
+└── SUPABASE_SETUP.md     # Supabase setup guide
 ```
 
 ## 🔧 Key Features
@@ -76,6 +99,8 @@ After deployment, update your Whop app settings:
 - **Dashboard**: Company-specific dashboard pages
 - **Experiences**: Dynamic experience pages
 - **API Integration**: Ready-to-use Whop SDK
+- **Database**: Supabase integration for data persistence
+- **Member Tracking**: Track user metrics and engagement
 - **TypeScript**: Full TypeScript support
 - **Tailwind CSS**: Modern styling framework
 
@@ -89,8 +114,15 @@ After deployment, update your Whop app settings:
 - Verify your `NEXT_PUBLIC_WHOP_APP_ID` and `WHOP_API_KEY` are correct
 - Make sure your app is added to a Whop in the same organization
 
+**Supabase connection issues?**
+- Check that `SUPABASE_URL` and `SUPABASE_KEY` are set correctly
+- Verify your Supabase project is active
+- Run the database schema SQL from `SUPABASE_SETUP.md`
+- Test the connection at `/api/test-supabase`
+
 **Need help?**
 - Check the [Whop Developer Docs](https://dev.whop.com/introduction)
+- Review the [Supabase Setup Guide](./SUPABASE_SETUP.md)
 - Review the template code in `/app` and `/lib` directories
 
 ## 🎯 Next Steps
