@@ -9,12 +9,15 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@supabase/supabase-js": "^2.48.1",
 		"@vercel/functions": "^2.0.3",
 		"@whop/api": "^0.0.50",
-		"@whop/react": "0.2.36",
+		"@whop/react": "^0.2.46",
+		"discord.js": "^14.17.3",
 		"next": "15.3.2",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"recharts": "^2.15.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",

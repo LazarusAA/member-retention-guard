@@ -1,4 +1,5 @@
 import { WhopServerSdk } from "@whop/api";
+import type { Member } from "@/models/members";
 
 export const whopSdk = WhopServerSdk({
 	// Add your app id here - this is required.
