@@ -100,4 +100,4 @@ After deployment, update your Whop app settings:
 3. **Create API Routes**: Add new endpoints in `/app/api`
 4. **Style Your App**: Customize Tailwind classes and add your branding
 
-Happy coding! 🎉
+Happy coding!! 🎉
