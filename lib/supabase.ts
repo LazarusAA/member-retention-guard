@@ -10,11 +10,22 @@ export type Database = {
 		Tables: {
 			members: {
 				Row: Member;
-				Insert: Omit<Member, "id" | "created_at"> & {
+				Insert: {
 					id?: string;
+					experience_id: string;
+					user_id: string;
+					status?: string;
+					last_valid_at?: string | null;
+					renewal_count?: number;
 					created_at?: string;
 				};
-				Update: Partial<Omit<Member, "id" | "created_at">>;
+				Update: {
+					experience_id?: string;
+					user_id?: string;
+					status?: string;
+					last_valid_at?: string | null;
+					renewal_count?: number;
+				};
 			};
 		};
 	};
